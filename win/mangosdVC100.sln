@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game", "VC100\game.vcxproj", "{1DC6C4DA-A028-41F3-877D-D5400C594F88}"
 	ProjectSection(ProjectDependencies) = postProject
 		{90297C34-F231-4DF4-848E-A74BCC0E40ED} = {90297C34-F231-4DF4-848E-A74BCC0E40ED}
@@ -49,6 +49,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tbb", "VC100\tbb.vcxproj", "{F62787DD-1327-448B-9818-030062BCFAA5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Detour", "..\dep\recastnavigation\Detour\win\VC100\Detour.vcxproj", "{72BDF975-4D4A-42C7-B2C4-F9ED90A2ABB6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lualib", "VC100\lualib.vcxproj", "{C9E608DE-60F7-4CAC-84AE-F8511D94AD46}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luabind", "VC100\luabind.vcxproj", "{88521C47-991D-4B61-9899-609B38361712}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -203,6 +207,24 @@ Global
 		{72BDF975-4D4A-42C7-B2C4-F9ED90A2ABB6}.Release|Win32.Build.0 = Release|Win32
 		{72BDF975-4D4A-42C7-B2C4-F9ED90A2ABB6}.Release|x64.ActiveCfg = Release|x64
 		{72BDF975-4D4A-42C7-B2C4-F9ED90A2ABB6}.Release|x64.Build.0 = Release|x64
+		{C9E608DE-60F7-4CAC-84AE-F8511D94AD46}.Debug_NoPCH|Win32.ActiveCfg = Debug|Win32
+		{C9E608DE-60F7-4CAC-84AE-F8511D94AD46}.Debug_NoPCH|Win32.Build.0 = Debug|Win32
+		{C9E608DE-60F7-4CAC-84AE-F8511D94AD46}.Debug_NoPCH|x64.ActiveCfg = Debug|Win32
+		{C9E608DE-60F7-4CAC-84AE-F8511D94AD46}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C9E608DE-60F7-4CAC-84AE-F8511D94AD46}.Debug|Win32.Build.0 = Debug|Win32
+		{C9E608DE-60F7-4CAC-84AE-F8511D94AD46}.Debug|x64.ActiveCfg = Debug|Win32
+		{C9E608DE-60F7-4CAC-84AE-F8511D94AD46}.Release|Win32.ActiveCfg = Release|Win32
+		{C9E608DE-60F7-4CAC-84AE-F8511D94AD46}.Release|Win32.Build.0 = Release|Win32
+		{C9E608DE-60F7-4CAC-84AE-F8511D94AD46}.Release|x64.ActiveCfg = Release|Win32
+		{88521C47-991D-4B61-9899-609B38361712}.Debug_NoPCH|Win32.ActiveCfg = Debug|Win32
+		{88521C47-991D-4B61-9899-609B38361712}.Debug_NoPCH|Win32.Build.0 = Debug|Win32
+		{88521C47-991D-4B61-9899-609B38361712}.Debug_NoPCH|x64.ActiveCfg = Debug|Win32
+		{88521C47-991D-4B61-9899-609B38361712}.Debug|Win32.ActiveCfg = Debug|Win32
+		{88521C47-991D-4B61-9899-609B38361712}.Debug|Win32.Build.0 = Debug|Win32
+		{88521C47-991D-4B61-9899-609B38361712}.Debug|x64.ActiveCfg = Debug|Win32
+		{88521C47-991D-4B61-9899-609B38361712}.Release|Win32.ActiveCfg = Release|Win32
+		{88521C47-991D-4B61-9899-609B38361712}.Release|Win32.Build.0 = Release|Win32
+		{88521C47-991D-4B61-9899-609B38361712}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
