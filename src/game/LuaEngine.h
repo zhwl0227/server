@@ -51,7 +51,7 @@ class LuaEngine
         void Initialize();
         void AddHooks();
 
-		void LuaCreatureEnterCombat(Creature* cr, Unit* victim);
+        void LuaCreatureEnterCombat(Creature* cr, Unit* victim);
 
     protected:
         lua_State* m_luaState;

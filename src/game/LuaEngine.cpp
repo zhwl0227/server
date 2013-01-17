@@ -103,8 +103,8 @@ void LuaEngine::AddHooks()
     sLog.outString("Initializing Hooks");
 
     luabind::module(m_luaState)
-		[
-			luabind::def("RegisterCreatureEvent",&RegisterCreatureEvent),
+        [
+            luabind::def("RegisterCreatureEvent",&RegisterCreatureEvent),
             luabind::def("MonsterSay",&MonsterSay)
         ];
     luabind::module(m_luaState)
