@@ -44,6 +44,11 @@ void RegisterCreatureEvent(int entry, int type, const char* funcName)
     }
 }
 
+void MonsterSay(Creature* cr, const char* text)
+{
+    cr->MonsterSay(text,0,NULL);
+}
+
 void LuaEngine::Initialize()
 {
     m_luaState = lua_open();
@@ -99,9 +104,10 @@ void LuaEngine::AddHooks()
 
     luabind::module(m_luaState)
 		[
-			luabind::def("RegisterCreatureEvent",&RegisterCreatureEvent)
+			luabind::def("RegisterCreatureEvent",&RegisterCreatureEvent),
+            luabind::def("MonsterSay",&MonsterSay)
         ];
-	luabind::module(m_luaState)
+    luabind::module(m_luaState)
         [
             luabind::class_<Creature,Unit>("Creature")
             .def((const char*)"GetGUID",&Creature::GetGUID)
@@ -111,4 +117,13 @@ void LuaEngine::AddHooks()
         ];
 
     sLog.outString("Hooks Initialized");
+}
+
+void LuaEngine::LuaCreatureEnterCombat(Creature* cr, Unit* victim)
+{
+    for(CreatureLuaScripts::iterator itr = creaturescripts.begin(); itr != creaturescripts.end(); ++itr)
+        if ((*itr).first == cr->GetEntry())
+            for (CreatureLuaEvents::iterator it2 = (*itr).second.begin(); it2 != (*itr).second.end(); ++it2)
+                if ((*it2).type == eLuaCreatureEnterCombat)
+                    luabind::call_function<void>(m_luaState,(*it2).name,cr,victim);
 }
