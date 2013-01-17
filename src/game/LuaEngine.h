@@ -16,3 +16,25 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+
+#include "Policies/SingletonImp.h"
+
+extern "C" {
+    #include <lua.h>
+    #include <lualib.h>
+    #include <lauxlib.h>
+}
+
+#include <luabind/luabind.hpp>
+
+class LuaEngine
+{
+    public:
+        void Initialize();
+
+    protected:
+        lua_State* m_luaState;
+        const char* m_file;
+};
+
+#define sLuaEngine MaNGOS::Singleton<LuaEngine>::Instance()

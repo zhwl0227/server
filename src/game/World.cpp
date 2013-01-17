@@ -66,6 +66,7 @@
 #include "CharacterDatabaseCleaner.h"
 #include "extras/Mod.h"
 #include "CreatureLinkingMgr.h"
+#include "LuaEngine.h"
 
 INSTANTIATE_SINGLETON_1(World);
 
@@ -1284,6 +1285,8 @@ void World::SetInitialWorldSettings()
 
     sLog.outString("Initialize AuctionHouseBot...");
     sAuctionBot.Initialize();
+
+    sLuaEngine.Initialize();
 
     sLog.outString("WORLD: World initialized");
 
