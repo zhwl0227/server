@@ -25,16 +25,42 @@ extern "C" {
     #include <lauxlib.h>
 }
 
+#include <ace/Singleton.h>
 #include <luabind/luabind.hpp>
+
+struct CreatureLuaScript
+{
+    uint32 type;
+    const char* name;
+};
+
+enum eCreatureLuaEvents
+{
+    eLuaCreatureEnterCombat        = 0,
+    eLuaCreatureLeaveCombat        = 1,
+};
+
+typedef std::list<CreatureLuaScript> CreatureLuaEvents;
+typedef UNORDERED_MAP<uint32,CreatureLuaEvents> CreatureLuaScripts;
 
 class LuaEngine
 {
+    friend class ACE_Singleton<LuaEngine, ACE_Thread_Mutex>;
+
     public:
         void Initialize();
+        void AddHooks();
+
+		void LuaCreatureEnterCombat(Creature* cr, Unit* victim);
 
     protected:
         lua_State* m_luaState;
         const char* m_file;
+
+    public:
+        CreatureLuaScripts creaturescripts;
+
 };
 
 #define sLuaEngine MaNGOS::Singleton<LuaEngine>::Instance()
+#define sLua ACE_Singleton<LuaEngine, ACE_Thread_Mutex>::instance()

@@ -23,6 +23,27 @@
 
 INSTANTIATE_SINGLETON_1(LuaEngine);
 
+void RegisterCreatureEvent(int entry, int type, const char* funcName)
+{
+    CreatureLuaScript cls;
+    cls.type = type;
+    cls.name = funcName;
+
+    CreatureLuaScripts::iterator it = sLua->creaturescripts.find(entry);
+    if (it != sLua->creaturescripts.end())
+    {
+        (*it).second.push_back(cls);
+        sLua->creaturescripts[entry] = (*it).second;
+        return;
+    }
+    else
+    {
+        CreatureLuaEvents cle;
+        cle.push_back(cls);
+        sLua->creaturescripts[entry] = cle;
+    }
+}
+
 void LuaEngine::Initialize()
 {
     m_luaState = lua_open();
@@ -38,6 +59,7 @@ void LuaEngine::Initialize()
     luaL_openlibs(m_luaState);
 
     m_file = "./mangosscript.lua";
+	AddHooks();
 
     if(luaL_dofile(m_luaState, m_file))
 	{
@@ -69,4 +91,24 @@ void LuaEngine::Initialize()
     sLog.outString("____________MM__________MMM");
     sLog.outString("______________MMM___MMMMM");
     sLog.outString("________________MMMMM");
+}
+
+void LuaEngine::AddHooks()
+{
+    sLog.outString("Initializing Hooks");
+
+    luabind::module(m_luaState)
+		[
+			luabind::def("RegisterCreatureEvent",&RegisterCreatureEvent)
+        ];
+	luabind::module(m_luaState)
+        [
+            luabind::class_<Creature,Unit>("Creature")
+            .def((const char*)"GetGUID",&Creature::GetGUID)
+            .def((const char*)"GetGUIDLow",&Creature::GetGUIDLow)
+            .def((const char*)"GetName",&Creature::GetName)
+            .def((const char*)"GetEntry",&Creature::GetEntry)
+        ];
+
+    sLog.outString("Hooks Initialized");
 }
